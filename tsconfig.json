@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "target": "es2017",
+    "module": "commonjs",
+    "lib": [
+      "dom",
+      "es6",
+      "es2022"
+    ],
+    "jsx": "react",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "noEmitOnError": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "typeRoots": [
+      "./src/@types",
+      "src/@types",
+      "node_modules/@types"
+    ],
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowUnusedLabels": false,
+    "noImplicitReturns": true,
+    "paths": {
+      "data/*": [ "src/data/*" ],
+      "domain/*": ["src/domain/*"],
+      "presentation/*": ["src/presentation/*"],
+      "factories/*": ["src/factories/*"],
+      "utils/*": ["src/utils/*"]
+    }
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./node_modules/**/*",
+    "node_modules",
+    "./webpack/**/*"
+  ]
+}

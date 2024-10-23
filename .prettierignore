@@ -1,0 +1,6 @@
+mockup/**
+mockup
+**/node_modules
+**/mockup
+/mockup/
+mockup/

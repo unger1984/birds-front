@@ -1,16 +1,16 @@
 import React from 'react';
-import { ChatMessageEntity } from 'domain/entities/chat.message.entity';
 import moment from 'moment';
+import { WsDataMessage } from 'domain/dto/ws.dto';
 
 export interface ChatMessageProps {
-	message: ChatMessageEntity;
+	message: WsDataMessage;
 }
 
 export const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
 	return (
 		<div className="chat__message">
-			{message.user?.picture ? (
-				<img className="chat__avatar" src={message.user?.picture} />
+			{message.user?.avatar ? (
+				<img className="chat__avatar" src={message.user?.avatar} />
 			) : (
 				<div className="chat__avatar" />
 			)}

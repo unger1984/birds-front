@@ -1,5 +1,4 @@
 import { SettingsSource } from 'domain/datasources/settings.source';
-import { UserEntity } from 'domain/entities/user.entity';
 
 export class SettingsSourceLocalstorage extends SettingsSource {
 	private readonly storageKey = 'birds';
@@ -24,15 +23,15 @@ export class SettingsSourceLocalstorage extends SettingsSource {
 		}
 	}
 
-	public override get auth(): UserEntity | null {
+	public override get auth(): string | null {
 		const authStored = this.storage && this.storage.getItem(`${this.storageKey}-auth`);
 		if (authStored) {
-			return JSON.parse(authStored) as UserEntity;
+			return JSON.parse(authStored) as string;
 		}
 		return null;
 	}
 
-	public override set auth(value: UserEntity | null) {
+	public override set auth(value: string | null) {
 		if (!this.storage) {
 			return;
 		}

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 
 import { WsEffector } from 'presentation/effectors/ws.effector';
-import { ChatMessageEntity } from 'domain/entities/chat.message.entity';
-import { WsMessage } from 'domain/entities/ws.message';
 import { Svg } from 'presentation/components/svg';
+import { WsCmd, WsDataMessage, WsDto } from 'domain/dto/ws.dto';
 
 export const ChatForm: React.FC = () => {
 	const [text, setText] = useState<string>('');
@@ -14,13 +13,20 @@ export const ChatForm: React.FC = () => {
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
+			setText(old => `${old}\n`);
+		} else if (event.key === 'Enter') {
+			event.preventDefault();
 			handleSend();
 		}
 	};
 
 	const handleSend = () => {
 		if (text.trim().length > 0) {
-			WsEffector.getInstance().send(new WsMessage('message', new ChatMessageEntity(text)));
+			let toSend = text.trim();
+			while (toSend.includes('\n\n')) {
+				toSend = toSend.replaceAll('\n\n', '\n');
+			}
+			WsEffector.getInstance().send(new WsDto(WsCmd.message, new WsDataMessage(toSend, new Date())));
 			setText('');
 		}
 	};

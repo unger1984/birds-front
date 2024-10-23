@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useUnit } from 'effector-react';
 
 import './chat.scss';
@@ -7,13 +7,12 @@ import { Preloader } from 'presentation/components/preloader/preloader';
 import { ChatEffector } from 'presentation/effectors/chat.effector';
 import { ChatMessage } from 'presentation/pages/chat/chat.message';
 import { useGoogleLogin } from '@react-oauth/google';
-import { AuthEffector } from 'presentation/effectors/auth.effector';
 import { ChatForm } from 'presentation/pages/chat/chat.form';
+import { WsCmd, WsDataSignIn, WsDto } from 'domain/dto/ws.dto';
 
 export const ChatVew: React.FC = () => {
 	const listRef = useRef<HTMLDivElement>(null);
-	const loadingWs = useUnit(WsEffector.getInstance().$loading);
-	const auth = useUnit(AuthEffector.getInstance().$auth);
+	const [loadingWs, user] = useUnit([WsEffector.getInstance().$loading, WsEffector.getInstance().$user]);
 	const [list, count] = useUnit([ChatEffector.getInstance().$list, ChatEffector.getInstance().$count]);
 
 	useEffect(() => {
@@ -22,7 +21,7 @@ export const ChatVew: React.FC = () => {
 
 	const handleLogin: () => void = useGoogleLogin({
 		onSuccess: async codeResponse => {
-			AuthEffector.getInstance().sign(codeResponse.access_token);
+			WsEffector.getInstance().send(new WsDto(WsCmd.sign_in, new WsDataSignIn(codeResponse.access_token)));
 		},
 		// eslint-disable-next-line no-console
 		onError: error => console.error('Login Failed:', error),
@@ -36,13 +35,23 @@ export const ChatVew: React.FC = () => {
 				</div>
 			) : (
 				<>
-					<div className="chat__count">Сейчас смотрят {count}</div>
+					<div className="chat__title">
+						<div className="chat__count">Сейчас смотрят {count}</div>
+						<a
+							href="https://www.tbank.ru/cf/5mfwO0VNFF9"
+							target="_blank"
+							className="btn btn--primery"
+							rel="noreferrer"
+						>
+							Скинуться на семечки
+						</a>
+					</div>
 					<div className="chat__messages" ref={listRef}>
 						{list.map((itm, index) => (
 							<ChatMessage key={index} message={itm} />
 						))}
 					</div>
-					{auth ? <ChatForm /> : <button onClick={handleLogin}>Sign in with Google 🚀</button>}
+					{user ? <ChatForm /> : <button onClick={handleLogin}>Sign in with Google 🚀</button>}
 				</>
 			)}
 		</div>

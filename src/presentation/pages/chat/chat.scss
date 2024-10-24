@@ -18,16 +18,16 @@
 		//bottom: 0;
 		//right: 10px;
 		//height: *;
-		max-height: calc(100vh - 150px);
+		max-height: calc(100vh - 180px);
 		//min-height: 100%;
 		overflow-y: scroll;
 
 		@media only screen and (max-width: 1040px) {
-			max-height: calc(100vh - 460px - 150px);
+			max-height: calc(100vh - 460px - 180px);
 		}
 
 		@media only screen and (max-width: 800px) {
-			max-height: calc(100vh - 260px - 150px);
+			max-height: calc(100vh - 260px - 180px);
 		}
 	}
 
@@ -70,6 +70,11 @@
 			word-break: break-word;
 			text-overflow: ellipsis;
 		}
+	}
+
+	&__sign{
+		margin: 0 10px;
+		color: #4B5876;
 	}
 
 	&__form {

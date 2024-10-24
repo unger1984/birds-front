@@ -38,4 +38,23 @@ export class SettingsSourceLocalstorage extends SettingsSource {
 		if (value !== null) this.storage.setItem(`${this.storageKey}-auth`, JSON.stringify(value));
 		else this.storage.removeItem(`${this.storageKey}-auth`);
 	}
+
+	public override get lang(): string {
+		let locale = this.storage && this.storage.getItem(`${this.storageKey}-locale`);
+		if (locale) {
+			return locale;
+		}
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-expect-error
+		locale = window.navigator.userLanguage || window.navigator.language;
+		return locale!;
+	}
+
+	public override set lang(value: string) {
+		if (!this.storage) {
+			return;
+		}
+		if (value !== null) this.storage.setItem(`${this.storageKey}-locale`, value);
+		else this.storage.removeItem(`${this.storageKey}-locale`);
+	}
 }

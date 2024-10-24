@@ -1,0 +1,12 @@
+{
+  "translation": {
+    "header.nav.home": "Translation",
+    "header.nav.about": "About",
+    "header.nav.flag": "\uD83C\uDDF7\uD83C\uDDFA",
+    "header.nav.lang": "Рус",
+
+    "chat.online": "Online now",
+    "chat.donate": "For food",
+    "chat.sign": "Sign in with Google"
+  }
+}

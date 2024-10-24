@@ -4,6 +4,7 @@ const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 require('dotenv').config();
 
 const envs = {
@@ -44,6 +45,23 @@ module.exports = {
 			__URL_WS__: JSON.stringify(process.env.URL_WS || ''),
 			__URL_HLS__: JSON.stringify(process.env.URL_HLS || ''),
 			__GOOGLE_AUTH_CLIENT_ID__: JSON.stringify(process.env.GOOGLE_AUTH_CLIENT_ID || ''),
+		}),
+		new CopyPlugin({
+			patterns: [
+				{
+					from: resolve(__dirname, '../', 'src/presentation/assets/static/android-chrome-192x192.png'),
+					to: '',
+				},
+				{
+					from: resolve(__dirname, '../', 'src/presentation/assets/static/android-chrome-512x512.png'),
+					to: '',
+				},
+				{ from: resolve(__dirname, '../', 'src/presentation/assets/static/apple-touch-icon.png'), to: '' },
+				{ from: resolve(__dirname, '../', 'src/presentation/assets/static/favicon.ico'), to: '' },
+				{ from: resolve(__dirname, '../', 'src/presentation/assets/static/favicon-16x16.png'), to: '' },
+				{ from: resolve(__dirname, '../', 'src/presentation/assets/static/favicon-32x32.png'), to: '' },
+				{ from: resolve(__dirname, '../', 'src/presentation/assets/static/site.webmanifest'), to: '' },
+			],
 		}),
 		new webpack.ContextReplacementPlugin(/moment[\\]locale$/, /en|ru/),
 	],

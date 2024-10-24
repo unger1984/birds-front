@@ -1,0 +1,12 @@
+{
+  "translation": {
+    "header.nav.home": "Трансляция",
+    "header.nav.about": "О проекте",
+    "header.nav.flag": "\uD83C\uDDEC\uD83C\uDDE7",
+    "header.nav.lang": "Eng",
+
+    "chat.online": "Сейчас смотрят",
+    "chat.donate": "На семечки",
+    "chat.sign": "Войти через Google"
+  }
+}

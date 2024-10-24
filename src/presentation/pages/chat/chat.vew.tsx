@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useUnit } from 'effector-react';
+import { useTranslation } from 'react-i18next';
 
 import './chat.scss';
 import { WsEffector } from 'presentation/effectors/ws.effector';
@@ -11,6 +12,8 @@ import { ChatForm } from 'presentation/pages/chat/chat.form';
 import { WsCmd, WsDataSignIn, WsDto } from 'domain/dto/ws.dto';
 
 export const ChatVew: React.FC = () => {
+	// eslint-disable-next-line id-length
+	const { t } = useTranslation();
 	const listRef = useRef<HTMLDivElement>(null);
 	const [loadingWs, user] = useUnit([WsEffector.getInstance().$loading, WsEffector.getInstance().$user]);
 	const [list, count] = useUnit([ChatEffector.getInstance().$list, ChatEffector.getInstance().$count]);
@@ -36,14 +39,16 @@ export const ChatVew: React.FC = () => {
 			) : (
 				<>
 					<div className="chat__title">
-						<div className="chat__count">Сейчас смотрят {count}</div>
+						<div className="chat__count">
+							{t('chat.online')} {count}
+						</div>
 						<a
 							href="https://www.tbank.ru/cf/5mfwO0VNFF9"
 							target="_blank"
 							className="btn btn--primery"
 							rel="noreferrer"
 						>
-							Скинуться на семечки
+							{t('chat.donate')}
 						</a>
 					</div>
 					<div className="chat__messages" ref={listRef}>
@@ -51,7 +56,13 @@ export const ChatVew: React.FC = () => {
 							<ChatMessage key={index} message={itm} />
 						))}
 					</div>
-					{user ? <ChatForm /> : <button onClick={handleLogin}>Sign in with Google 🚀</button>}
+					{user ? (
+						<ChatForm />
+					) : (
+						<button className="btn btn--secondary chat__sign" onClick={handleLogin}>
+							{t('chat.sign')}
+						</button>
+					)}
 				</>
 			)}
 		</div>

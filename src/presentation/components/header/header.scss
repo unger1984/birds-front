@@ -1,0 +1,34 @@
+.header{
+  display: flex;
+  flex-direction: row;
+  padding: 5px 10px;
+  align-items: center;
+
+  &__logo{
+    width: 32px;
+    height: 32px;
+  }
+
+  &__nav{
+    display: flex;
+    flex: 1;
+
+    li{
+      display: flex;
+    }
+
+    &--link{
+      margin-left: 20px;
+      color: #4B5876;
+
+      &.active{
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    }
+
+    &--spacer{
+      flex: 1;
+    }
+  }
+}

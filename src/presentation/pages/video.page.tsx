@@ -35,7 +35,6 @@ export const VideoPage: React.FC = () => {
 
 	return (
 		<div className="video-page">
-			<h1>Онлайн трансляция</h1>
 			<div className="video-page__container">
 				<div className="video-page__wrapper">
 					<div className="video-page__placeholder">

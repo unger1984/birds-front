@@ -45,7 +45,7 @@ export class WsEffector {
 			socket.onopen = () => {
 				// eslint-disable-next-line no-console
 				console.log('ws open');
-
+				this._chat.clear();
 				resolve(socket);
 			};
 

@@ -12,8 +12,11 @@ export class ChatEffector {
 	}
 
 	public readonly addMessage = createEvent<WsDataMessage>();
+	public readonly clear = createEvent();
 
-	public readonly $list = createStore<WsDataMessage[]>([]).on(this.addMessage, (old, message) => [...old, message]);
+	public readonly $list = createStore<WsDataMessage[]>([])
+		.on(this.addMessage, (old, message) => [...old, message])
+		.on(this.clear, () => []);
 
 	public readonly setCount = createEvent<number>();
 

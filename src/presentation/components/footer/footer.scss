@@ -1,0 +1,37 @@
+.footer{
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #4B5876;
+
+  div{
+    display: flex;
+    flex-direction: row;
+  }
+
+  a{
+    color: #4B5876;
+    cursor: pointer;
+
+    &:nth-child(2){
+      margin-left: 10px;
+    }
+    &:nth-child(3){
+      margin-left: 10px;
+    }
+  }
+
+  img{
+    width: 24px;
+    height: 24px;
+
+    opacity: 0.5;
+
+    &:hover{
+      opacity: 1;
+    }
+  }
+}

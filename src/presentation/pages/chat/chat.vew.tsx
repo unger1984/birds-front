@@ -42,20 +42,20 @@ export const ChatVew: React.FC = () => {
 						<div className="chat__count">
 							{t('chat.online')} {count}
 						</div>
-						<a
-							href="https://www.tbank.ru/cf/5mfwO0VNFF9"
-							target="_blank"
-							className="btn btn--primery"
-							rel="noreferrer"
-						>
-							{t('chat.donate')}
-						</a>
 					</div>
 					<div className="chat__messages" ref={listRef}>
 						{list.map((itm, index) => (
 							<ChatMessage key={index} message={itm} />
 						))}
 					</div>
+					<a
+						href="https://www.tbank.ru/cf/5mfwO0VNFF9"
+						target="_blank"
+						className="btn btn--primery"
+						rel="noreferrer"
+					>
+						{t('chat.donate')}
+					</a>
 					{user ? (
 						<ChatForm />
 					) : (

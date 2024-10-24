@@ -129,7 +129,7 @@ body{
 		color: rgba(136, 143, 167, .45);
 	}
 }
-.btn--primery:hover{box-shadow: 0 0 0 #C9D9E8, 0 0 0 #fff;}
+.btn--primery:hover{box-shadow: 0 0 0 #F08130, 0 0 0 #fff !important;}
 
 /*layout*/
 .wrapper{
@@ -139,7 +139,8 @@ body{
 	align-items: stretch;
 	//justify-content: space-between;
 	flex-direction: column;
-	min-height: 100vh;
+	height: 100dvh;
+	//min-height: 100vh;
 }
 
 /*typographyc*/

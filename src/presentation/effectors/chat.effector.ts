@@ -1,5 +1,6 @@
-import { createEvent, createStore } from 'effector';
-import { WsDataMessage } from 'domain/dto/ws.dto';
+import { createEffect, createEvent, createStore } from 'effector';
+import { WsCmd, WsDataMessage, WsDataReloadChat, WsDto } from 'domain/dto/ws.dto';
+import { WsEffector } from 'presentation/effectors/ws.effector';
 
 export class ChatEffector {
 	private static instance: ChatEffector;
@@ -14,9 +15,14 @@ export class ChatEffector {
 	public readonly addMessage = createEvent<WsDataMessage>();
 	public readonly clear = createEvent();
 
+	public readonly reload = createEffect<void, void>(() => {
+		WsEffector.getInstance().send(new WsDto(WsCmd.reload_chat, new WsDataReloadChat()));
+	});
+
 	public readonly $list = createStore<WsDataMessage[]>([])
 		.on(this.addMessage, (old, message) => [...old, message])
-		.on(this.clear, () => []);
+		.on(this.clear, () => [])
+		.on(this.reload, () => []);
 
 	public readonly setCount = createEvent<number>();
 

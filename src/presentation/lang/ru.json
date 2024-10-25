@@ -1,5 +1,8 @@
 {
   "translation": {
+    "title.home": "Трансляция",
+    "title.about": "О нас",
+
     "header.nav.home": "Трансляция",
     "header.nav.about": "О проекте",
     "header.nav.flag": "\uD83C\uDDEC\uD83C\uDDE7",

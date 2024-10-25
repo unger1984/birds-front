@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import moment from 'moment/moment';
 
 import './header.scss';
 import logo from './logo.png';
 import { ServiceLocator } from 'factories/service.locator';
+import { ChatEffector } from 'presentation/effectors/chat.effector';
 
 export const Header: React.FC = () => {
 	// eslint-disable-next-line id-length
@@ -12,8 +14,11 @@ export const Header: React.FC = () => {
 
 	const handleChangeLang = () => {
 		const lang = i18n.language === 'en' ? 'ru' : 'en';
-		i18n.changeLanguage(lang);
-		ServiceLocator.getInstance().settingsSource.lang = lang;
+		i18n.changeLanguage(lang).then(() => {
+			moment.locale(lang);
+			ServiceLocator.getInstance().settingsSource.lang = lang;
+			ChatEffector.getInstance().reload();
+		});
 	};
 
 	return (

@@ -7,6 +7,7 @@ import { VideoPage } from 'presentation/pages/video.page';
 import { WsEffector } from 'presentation/effectors/ws.effector';
 import { Header } from 'presentation/components/header/header';
 import { Footer } from 'presentation/components/footer/footer';
+import { AboutPage } from 'presentation/pages/about/about.page';
 
 export const App: React.FC = () => {
 	const {
@@ -37,7 +38,7 @@ export const App: React.FC = () => {
 			<div className="main">
 				<Routes>
 					<Route path="/" element={<VideoPage />} />
-					<Route path="/about" element={<h1>Under construction</h1>} />
+					<Route path="/about" element={<AboutPage />} />
 				</Routes>
 			</div>
 			<Footer />

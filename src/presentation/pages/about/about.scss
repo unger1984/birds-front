@@ -1,0 +1,42 @@
+.about{
+  display: flex;
+  padding: 10px 10px;
+  color: #000000;
+  max-width: 1344px;
+  margin: 0 auto;
+  flex-direction: column;
+  max-height: calc(100dvh - 100px);
+  overflow-y: scroll;
+
+  h1{
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__text{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+    @media only screen and (max-width: 944px) {
+      flex-direction: column;
+    }
+  }
+
+  &__block{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    @media only screen and (min-width: 945px) {
+      &:first-child {
+        margin-right: 20px;
+      }
+    }
+
+    p{
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+  }
+}

@@ -61,6 +61,7 @@ module.exports = {
 				{ from: resolve(__dirname, '../', 'src/presentation/assets/static/favicon-16x16.png'), to: '' },
 				{ from: resolve(__dirname, '../', 'src/presentation/assets/static/favicon-32x32.png'), to: '' },
 				{ from: resolve(__dirname, '../', 'src/presentation/assets/static/site.webmanifest'), to: '' },
+				{ from: resolve(__dirname, '../', 'src/presentation/assets/static/birds.mp3'), to: '' },
 			],
 		}),
 		new webpack.ContextReplacementPlugin(/moment[\\]locale$/, /en|ru/),

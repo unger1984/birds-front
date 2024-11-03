@@ -142,9 +142,19 @@
 	&__title{
 		padding: 10px;
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		align-items: stretch;
-		justify-content: stretch;
+		justify-content: space-between;
+
+		.btn{
+			cursor: pointer;
+
+			svg{
+				width: 32px;
+				height: 32px;
+				fill: black;
+			}
+		}
 	}
 
 	&__count {

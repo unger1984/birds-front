@@ -10,6 +10,8 @@ import { ChatMessage } from 'presentation/pages/chat/chat.message';
 import { useGoogleLogin } from '@react-oauth/google';
 import { ChatForm } from 'presentation/pages/chat/chat.form';
 import { WsCmd, WsDataSignIn, WsDto } from 'domain/dto/ws.dto';
+import { Svg } from 'presentation/components/svg';
+import { MusicEffector } from 'presentation/effectors/music.effector';
 
 export const ChatVew: React.FC = () => {
 	// eslint-disable-next-line id-length
@@ -17,6 +19,7 @@ export const ChatVew: React.FC = () => {
 	const listRef = useRef<HTMLDivElement>(null);
 	const [loadingWs, user] = useUnit([WsEffector.getInstance().$loading, WsEffector.getInstance().$user]);
 	const [list, count] = useUnit([ChatEffector.getInstance().$list, ChatEffector.getInstance().$count]);
+	const music = useUnit(MusicEffector.getInstance().$music);
 
 	useEffect(() => {
 		listRef?.current?.scrollTo({ top: listRef?.current?.scrollHeight ?? 0 });
@@ -30,6 +33,10 @@ export const ChatVew: React.FC = () => {
 		onError: error => console.error('Login Failed:', error),
 	});
 
+	const handleChangeMusic = () => {
+		MusicEffector.getInstance().setMusic(!music);
+	};
+
 	return (
 		<div className="video-page__chat chat__view">
 			{loadingWs ? (
@@ -42,6 +49,9 @@ export const ChatVew: React.FC = () => {
 						<div className="chat__count">
 							{t('chat.online')} {count}
 						</div>
+						<button className="btn" onClick={handleChangeMusic}>
+							<Svg name={`music_${music ? 'on' : 'off'}`} />
+						</button>
 					</div>
 					<div className="chat__messages" ref={listRef}>
 						{list.map((itm, index) => (

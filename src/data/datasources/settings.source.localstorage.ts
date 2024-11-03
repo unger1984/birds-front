@@ -57,4 +57,17 @@ export class SettingsSourceLocalstorage extends SettingsSource {
 		if (value !== null) this.storage.setItem(`${this.storageKey}-locale`, value);
 		else this.storage.removeItem(`${this.storageKey}-locale`);
 	}
+
+	public override set music(val: boolean) {
+		if (!this.storage) {
+			return;
+		}
+		if (val !== null) this.storage.setItem(`${this.storageKey}-music`, val ? 'true' : 'false');
+		else this.storage.removeItem(`${this.storageKey}-music`);
+	}
+
+	public override get music(): boolean {
+		const music = this.storage && this.storage.getItem(`${this.storageKey}-music`);
+		return !!(music && music === 'true');
+	}
 }

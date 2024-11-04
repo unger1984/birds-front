@@ -12,6 +12,8 @@
   &__nav{
     display: flex;
     flex: 1;
+    justify-content: center;
+    align-items: center;
 
     li{
       display: flex;
@@ -29,6 +31,32 @@
 
     &--spacer{
       flex: 1;
+      align-items: center;
+      justify-content: center;
+
+      a{
+        display: flex;
+        width: 92px;
+        height: 32px;
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        &.rustore{
+          background-image: url('rustore_light.png');
+
+          &:hover{
+            background-image: url('rustore.png');
+          }
+        }
+
+        &.apk{
+          background-image: url('apk_light.png');
+
+          &:hover{
+            background-image: url('apk.png');
+          }
+        }
+      }
     }
   }
 }

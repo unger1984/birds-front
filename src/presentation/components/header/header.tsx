@@ -35,7 +35,15 @@ export const Header: React.FC = () => {
 						{t('header.nav.about')}
 					</NavLink>
 				</li>
-				<li className="header__nav--spacer"></li>
+				<li className="header__nav--spacer">
+					<a
+						className="rustore"
+						href="https://www.rustore.ru/catalog/app/pro.unger1984.birds"
+						target="_blank"
+						rel="noopener noreferrer"
+					></a>
+					<a className="apk" href="/birdsfeeder.apk" target="_blank" rel="noopener noreferrer"></a>
+				</li>
 				<li>
 					<button className="btn" onClick={handleChangeLang}>
 						{t('header.nav.lang')}

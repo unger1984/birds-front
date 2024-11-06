@@ -35,7 +35,8 @@
     "react-i18next": "^15.1.0",
     "react-router-dom": "^6.23.1",
     "react-toastify": "^10.0.5",
-    "reflect-metadata": "^0.2.2"
+    "reflect-metadata": "^0.2.2",
+    "use-react-screenshot": "^4.0.0"
   },
   "devDependencies": {
     "@types/qs": "^6.9.15",

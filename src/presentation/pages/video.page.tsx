@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useUnit } from 'effector-react';
 import ReactHlsPlayer from 'react-hls-video-player';
 import Hls from 'hls.js';
+import { useScreenshot, createFileName } from 'use-react-screenshot';
 
 import './video-page.scss';
 import { Preloader } from 'presentation/components/preloader/preloader';
@@ -12,6 +13,7 @@ import { MusicEffector } from 'presentation/effectors/music.effector';
 export const VideoPage: React.FC = () => {
 	const playerRef = React.useRef<HTMLVideoElement>(null);
 	const audioRef = React.useRef<HTMLAudioElement>(null);
+	const [image, takeScreenshot] = useScreenshot({ type: 'image/png', quality: 1.0 });
 	const hlsUrl = ServiceLocator.getInstance().configSource.hlsUrl;
 	const music = useUnit(MusicEffector.getInstance().$music);
 
@@ -22,6 +24,15 @@ export const VideoPage: React.FC = () => {
 	useEffect(() => {
 		playAudio();
 	}, [music]);
+
+	useEffect(() => {
+		if (image) {
+			const aLink = document.createElement('a');
+			aLink.href = image;
+			aLink.download = createFileName('png', 'screenshot');
+			aLink.click();
+		}
+	}, [image]);
 
 	const playVideo = () => {
 		const playPromise = playerRef.current?.play();
@@ -47,6 +58,12 @@ export const VideoPage: React.FC = () => {
 
 	const handleDoubleClick = () => {
 		playerRef.current?.requestFullscreen();
+	};
+
+	const handleCreateScreenshot = () => {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-expect-error
+		takeScreenshot(playerRef.current!);
 	};
 
 	return (
@@ -83,7 +100,7 @@ export const VideoPage: React.FC = () => {
 						// height="auto"
 					/>
 				</div>
-				<ChatVew />
+				<ChatVew onScreenshot={handleCreateScreenshot} />
 			</div>
 		</div>
 	);

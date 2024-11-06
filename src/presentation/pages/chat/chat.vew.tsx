@@ -13,7 +13,11 @@ import { WsCmd, WsDataSignIn, WsDto } from 'domain/dto/ws.dto';
 import { Svg } from 'presentation/components/svg';
 import { MusicEffector } from 'presentation/effectors/music.effector';
 
-export const ChatVew: React.FC = () => {
+export interface ChatVewProps {
+	onScreenshot: () => void;
+}
+
+export const ChatVew: React.FC<ChatVewProps> = ({ onScreenshot }) => {
 	// eslint-disable-next-line id-length
 	const { t } = useTranslation();
 	const listRef = useRef<HTMLDivElement>(null);
@@ -49,6 +53,9 @@ export const ChatVew: React.FC = () => {
 						<div className="chat__count">
 							{t('chat.online')} {count}
 						</div>
+						<button className="btn" onClick={onScreenshot}>
+							<Svg name="camera" />
+						</button>
 						<button className="btn" onClick={handleChangeMusic}>
 							<Svg name={`music_${music ? 'on' : 'off'}`} />
 						</button>

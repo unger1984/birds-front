@@ -1,16 +1,23 @@
 import React from 'react';
+import moment from 'moment';
 
 import './footer.scss';
 import github from './github.png';
 import twitter from './twitter.png';
 import boosty from './boosty.png';
+import { ServiceLocator } from 'factories/service.locator';
 
 export const Footer: React.FC = () => {
+	const version = ServiceLocator.getInstance().configSource.version;
+
 	return (
 		<footer className="footer">
 			<div>
+				<div className="footer__version">
+					ver.{version.length > 0 ? moment(version).format('YYMMDDHHmm') : 'unknown'}
+				</div>
 				©2024{' '}
-				<a href="https://unger1984.pro" target="_blank" rel="noreferrer">
+				<a className="footer__copy" href="https://unger1984.pro" target="_blank" rel="noreferrer">
 					Andrey Unger
 				</a>
 			</div>

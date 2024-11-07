@@ -7,6 +7,7 @@ import './header.scss';
 import logo from './logo.png';
 import { ServiceLocator } from 'factories/service.locator';
 import { ChatEffector } from 'presentation/effectors/chat.effector';
+import { Svg } from 'presentation/components/svg';
 
 export const Header: React.FC = () => {
 	// eslint-disable-next-line id-length
@@ -44,11 +45,11 @@ export const Header: React.FC = () => {
 					></a>
 					<a className="apk" href="/birdsfeeder.apk" target="_blank" rel="noopener noreferrer"></a>
 				</li>
-				<li>
+				<li className="header__lang">
 					<button className="btn" onClick={handleChangeLang}>
 						{t('header.nav.lang')}
-						<span> </span>
-						{t('header.nav.flag')}
+						<div>&nbsp;</div>
+						<Svg name={i18n.language === 'en' ? 'ru' : 'en'} />
 					</button>
 				</li>
 			</ul>

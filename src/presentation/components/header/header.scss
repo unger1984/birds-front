@@ -59,4 +59,15 @@
       }
     }
   }
+
+  &__lang{
+    //width: 95px;
+    align-items: flex-end;
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }

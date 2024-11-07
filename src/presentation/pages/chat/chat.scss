@@ -137,6 +137,18 @@
 				}
 			}
 		}
+
+		.chat__avatar{
+			width: 32px;
+			height: 32px;
+			border-radius: 50%;
+			margin-right: 5px;
+
+			@media only screen and (min-width:944px) and (max-width: 1280px) {
+				width: 24px;
+				height: 24px;
+			}
+		}
 	}
 
 	&__title{

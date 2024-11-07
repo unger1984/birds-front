@@ -3,9 +3,11 @@ import React, { useRef } from 'react';
 import { WsEffector } from 'presentation/effectors/ws.effector';
 import { Svg } from 'presentation/components/svg';
 import { WsCmd, WsDataMessage, WsDto } from 'domain/dto/ws.dto';
+import { useUnit } from 'effector-react/effector-react.mjs';
 
 export const ChatForm: React.FC = () => {
 	const editRef = useRef<HTMLDivElement>(null);
+	const user = useUnit(WsEffector.getInstance().$user);
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
 		if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
@@ -45,6 +47,7 @@ export const ChatForm: React.FC = () => {
 
 	return (
 		<div className="chat__form">
+			{user?.avatar ? <img className="chat__avatar" src={user?.avatar} /> : <></>}
 			<div
 				ref={editRef}
 				className="textarea"

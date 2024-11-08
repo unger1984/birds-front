@@ -2,9 +2,10 @@ import { createEffect, createEvent, createStore } from 'effector';
 import { ConfigSource } from 'domain/datasources/config.source';
 import { ServiceLocator } from 'factories/service.locator';
 import { ChatEffector } from 'presentation/effectors/chat.effector';
-import { WsCmd, WsDataAuth, WsDataCount, WsDataMessage, WsDto } from 'domain/dto/ws.dto';
+import { WsCmd, WsDataAuth, WsDataCount, WsDataMessage, WsDataOnline, WsDto } from 'domain/dto/ws.dto';
 import { UserDto } from 'domain/dto/user.dto';
 import { SettingsSource } from 'domain/datasources/settings.source';
+import { OnlineEffector } from 'presentation/effectors/online.effector';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -15,11 +16,13 @@ export class WsEffector {
 	private readonly _configSource: ConfigSource;
 	private readonly _settingsSource: SettingsSource;
 	private readonly _chat: ChatEffector;
+	private readonly _online: OnlineEffector;
 
 	private constructor() {
 		this._configSource = ServiceLocator.getInstance().configSource;
 		this._settingsSource = ServiceLocator.getInstance().settingsSource;
 		this._chat = ChatEffector.getInstance();
+		this._online = OnlineEffector.getInstance();
 
 		this.connect.doneData.watch(() => {
 			const token = this._settingsSource.auth;
@@ -107,6 +110,9 @@ export class WsEffector {
 				break;
 			case WsCmd.count:
 				this._chat.setCount((data as WsDataCount).total);
+				break;
+			case WsCmd.online:
+				this._online.updateList((data as WsDataOnline).list ?? []);
 				break;
 		}
 	}

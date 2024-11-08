@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import './app.scss';
-import { VideoPage } from 'presentation/pages/video.page';
+import { VideoPage } from 'presentation/pages/video/video.page';
 import { WsEffector } from 'presentation/effectors/ws.effector';
 import { Header } from 'presentation/components/header/header';
 import { Footer } from 'presentation/components/footer/footer';

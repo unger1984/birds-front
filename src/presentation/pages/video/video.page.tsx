@@ -7,7 +7,7 @@ import { useScreenshot, createFileName } from 'use-react-screenshot';
 import './video-page.scss';
 import { Preloader } from 'presentation/components/preloader/preloader';
 import { ServiceLocator } from 'factories/service.locator';
-import { ChatVew } from 'presentation/pages/chat/chat.vew';
+import { ChatVew } from 'presentation/pages/video/chat/chat.vew';
 import { MusicEffector } from 'presentation/effectors/music.effector';
 
 export const VideoPage: React.FC = () => {

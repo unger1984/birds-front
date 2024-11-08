@@ -24,6 +24,45 @@
 		}
 	}
 
+	&__online{
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		height: 1px; /* new */
+		flex-grow: 1;
+		flex-flow: column nowrap;
+		overflow-y: scroll;
+		margin-bottom: 10px;
+
+
+		&-item{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+
+			&-avatar{
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+
+				@media only screen and (min-width:944px) and (max-width: 1280px) {
+					width: 24px;
+					height: 24px;
+				}
+			}
+
+			&-ip{
+				display: flex;
+				flex: 1;
+
+				a{
+					color: black;
+				}
+			}
+		}
+	}
+
 	&__messages {
 		display: flex;
 		flex-direction: column;

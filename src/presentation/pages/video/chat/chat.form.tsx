@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
+import { useUnit } from 'effector-react';
 
 import { WsEffector } from 'presentation/effectors/ws.effector';
 import { Svg } from 'presentation/components/svg';
 import { WsCmd, WsDataMessage, WsDto } from 'domain/dto/ws.dto';
-import { useUnit } from 'effector-react/effector-react.mjs';
 
 export const ChatForm: React.FC = () => {
 	const editRef = useRef<HTMLDivElement>(null);

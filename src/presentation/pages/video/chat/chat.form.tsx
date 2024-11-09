@@ -33,7 +33,7 @@ export const ChatForm: React.FC = () => {
 	};
 
 	const handleSend = () => {
-		const text = editRef.current?.innerHTML?.replaceAll('<br>', '\n') ?? '';
+		const text = editRef.current?.innerHTML?.replaceAll('<br>', '\n').replaceAll('&nbsp;', ' ') ?? '';
 
 		if (text.trim().length > 0) {
 			let toSend = text.trim();

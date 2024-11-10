@@ -20,8 +20,8 @@ export const Footer: React.FC = () => {
 				<a className="footer__copy" href="https://unger1984.pro" target="_blank" rel="noreferrer">
 					Andrey Unger
 				</a>
-			</div>
-			<div>
+				{/*</div>*/}
+				{/*<div>*/}
 				<a href="https://boosty.to/unger1984" target="_blank" rel="noreferrer">
 					<img src={boosty} alt="boosty" />
 				</a>

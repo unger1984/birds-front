@@ -13,11 +13,14 @@ import { InputSelect } from 'presentation/components/input.select/input.select';
 import { VideoEffector } from 'presentation/effectors/video.effector';
 
 export const VideoPage: React.FC = () => {
+	const hlsUrl360p = ServiceLocator.getInstance().configSource.hlsUrl360p;
+	const hlsUrl480p = ServiceLocator.getInstance().configSource.hlsUrl480p;
+	const hlsUrl720p = ServiceLocator.getInstance().configSource.hlsUrl720p;
+	const hlsUrl1080p = ServiceLocator.getInstance().configSource.hlsUrl;
+
 	const playerRef = React.useRef<HTMLVideoElement>(null);
 	const audioRef = React.useRef<HTMLAudioElement>(null);
 	const [image, takeScreenshot] = useScreenshot({ type: 'image/png', quality: 1.0 });
-	const hlsUrl480p = ServiceLocator.getInstance().configSource.hlsUrl480p;
-	const hlsUrl1080p = ServiceLocator.getInstance().configSource.hlsUrl;
 	const music = useUnit(MusicEffector.getInstance().$music);
 	const resolution = useUnit(VideoEffector.getInstance().$resolution);
 
@@ -70,6 +73,23 @@ export const VideoPage: React.FC = () => {
 		takeScreenshot(playerRef.current!);
 	};
 
+	let url = hlsUrl360p;
+	switch (resolution) {
+		case '1080p':
+			url = hlsUrl1080p;
+			break;
+		case '720p':
+			url = hlsUrl720p;
+			break;
+		case '480p':
+			url = hlsUrl480p;
+			break;
+		case '360p':
+		default:
+			url = hlsUrl360p;
+			break;
+	}
+
 	return (
 		<div className="video-page">
 			<div className="video-page__container">
@@ -84,7 +104,7 @@ export const VideoPage: React.FC = () => {
 						className="video-page__player"
 						playerRef={playerRef}
 						onDoubleClick={handleDoubleClick}
-						src={resolution === '480p' ? hlsUrl480p : hlsUrl1080p}
+						src={url}
 						getHLSInstance={hls => {
 							hls.on(Hls.Events.BUFFER_APPENDED, () => {});
 							hls.on(Hls.Events.ERROR, (event, data) => {
@@ -108,7 +128,7 @@ export const VideoPage: React.FC = () => {
 						value={resolution}
 						onChange={VideoEffector.getInstance().setResolution}
 					>
-						{['480p', '1080p']}
+						{['360p', '480p', '720p', '1080p']}
 					</InputSelect>
 				</div>
 				<ChatVew onScreenshot={handleCreateScreenshot} />

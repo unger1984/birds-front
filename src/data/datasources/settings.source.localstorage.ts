@@ -81,6 +81,6 @@ export class SettingsSourceLocalstorage extends SettingsSource {
 
 	public override get resolution(): string {
 		const music = this.storage && this.storage.getItem(`${this.storageKey}-resolution`);
-		return music ?? '480p';
+		return music ?? '360p';
 	}
 }

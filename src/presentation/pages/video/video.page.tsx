@@ -9,13 +9,17 @@ import { Preloader } from 'presentation/components/preloader/preloader';
 import { ServiceLocator } from 'factories/service.locator';
 import { ChatVew } from 'presentation/pages/video/chat/chat.vew';
 import { MusicEffector } from 'presentation/effectors/music.effector';
+import { InputSelect } from 'presentation/components/input.select/input.select';
+import { VideoEffector } from 'presentation/effectors/video.effector';
 
 export const VideoPage: React.FC = () => {
 	const playerRef = React.useRef<HTMLVideoElement>(null);
 	const audioRef = React.useRef<HTMLAudioElement>(null);
 	const [image, takeScreenshot] = useScreenshot({ type: 'image/png', quality: 1.0 });
-	const hlsUrl = ServiceLocator.getInstance().configSource.hlsUrl;
+	const hlsUrl480p = ServiceLocator.getInstance().configSource.hlsUrl480p;
+	const hlsUrl1080p = ServiceLocator.getInstance().configSource.hlsUrl;
 	const music = useUnit(MusicEffector.getInstance().$music);
+	const resolution = useUnit(VideoEffector.getInstance().$resolution);
 
 	useEffect(() => {
 		playVideo();
@@ -80,7 +84,7 @@ export const VideoPage: React.FC = () => {
 						className="video-page__player"
 						playerRef={playerRef}
 						onDoubleClick={handleDoubleClick}
-						src={hlsUrl}
+						src={resolution === '480p' ? hlsUrl480p : hlsUrl1080p}
 						getHLSInstance={hls => {
 							hls.on(Hls.Events.BUFFER_APPENDED, () => {});
 							hls.on(Hls.Events.ERROR, (event, data) => {
@@ -99,6 +103,13 @@ export const VideoPage: React.FC = () => {
 						height="100%"
 						// height="auto"
 					/>
+					<InputSelect
+						placeholder="Resolution"
+						value={resolution}
+						onChange={VideoEffector.getInstance().setResolution}
+					>
+						{['480p', '1080p']}
+					</InputSelect>
 				</div>
 				<ChatVew onScreenshot={handleCreateScreenshot} />
 			</div>

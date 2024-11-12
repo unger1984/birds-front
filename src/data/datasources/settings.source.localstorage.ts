@@ -70,4 +70,17 @@ export class SettingsSourceLocalstorage extends SettingsSource {
 		const music = this.storage && this.storage.getItem(`${this.storageKey}-music`);
 		return !!(music && music === 'true');
 	}
+
+	public override set resolution(val: string | null) {
+		if (!this.storage) {
+			return;
+		}
+		if (val) this.storage.setItem(`${this.storageKey}-resolution`, val);
+		else this.storage.removeItem(`${this.storageKey}-resolution`);
+	}
+
+	public override get resolution(): string {
+		const music = this.storage && this.storage.getItem(`${this.storageKey}-resolution`);
+		return music ?? '480p';
+	}
 }

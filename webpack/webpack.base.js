@@ -44,6 +44,7 @@ module.exports = {
 			__VERSION__: JSON.stringify(new Date()),
 			__URL_WS__: JSON.stringify(process.env.URL_WS || ''),
 			__URL_HLS__: JSON.stringify(process.env.URL_HLS || ''),
+			__URL_HLS_480P__: JSON.stringify(process.env.URL_HLS_480P || ''),
 			__GOOGLE_AUTH_CLIENT_ID__: JSON.stringify(process.env.GOOGLE_AUTH_CLIENT_ID || ''),
 		}),
 		new CopyPlugin({

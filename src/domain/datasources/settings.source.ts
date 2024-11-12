@@ -8,4 +8,7 @@ export abstract class SettingsSource {
 
 	public abstract set music(val: boolean);
 	public abstract get music(): boolean;
+
+	public abstract set resolution(val: string | null);
+	public abstract get resolution(): string;
 }

@@ -7,6 +7,10 @@
   font-size: 12px;
   color: #4B5876;
 
+  @media screen and (prefers-color-scheme: dark) {
+    color: #fff;
+  }
+
   @media only screen and (max-width: 944px) {
     font-size: 10px;
   }
@@ -29,6 +33,10 @@
   a{
     color: #4B5876;
     cursor: pointer;
+
+    @media screen and (prefers-color-scheme: dark) {
+      color: #fff;
+    }
 
     &:nth-child(3){
       margin-left: 10px;

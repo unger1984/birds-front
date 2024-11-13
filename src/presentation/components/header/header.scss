@@ -23,6 +23,10 @@
       margin-left: 20px;
       color: #4B5876;
 
+      @media screen and (prefers-color-scheme: dark) {
+        color: #fff;
+      }
+
       &.active{
         font-weight: bold;
         text-decoration: underline;
@@ -43,6 +47,7 @@
 
         &.rustore{
           background-image: url('rustore_light.png');
+          margin-right: 10px;
 
           &:hover{
             background-image: url('rustore.png');
@@ -55,6 +60,26 @@
           &:hover{
             background-image: url('apk.png');
           }
+        }
+
+        @media screen and (prefers-color-scheme: dark) {
+          &.rustore{
+            background-color: #121212;
+            background-image: url('rustore.png');
+
+            &:hover{
+              background-image: url('rustore_light.png');
+            }
+          }
+
+          &.apk{
+            background-image: url('apk.png');
+
+            &:hover{
+              background-image: url('apk_light.png');
+            }
+          }
+
         }
       }
     }

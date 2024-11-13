@@ -2,9 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment/moment';
+import { useMediaQuery } from 'react-responsive';
 
 import './header.scss';
 import logo from './logo.png';
+import logo_white from './logo_white.png';
 import { ServiceLocator } from 'factories/service.locator';
 import { ChatEffector } from 'presentation/effectors/chat.effector';
 import { Svg } from 'presentation/components/svg';
@@ -12,6 +14,12 @@ import { Svg } from 'presentation/components/svg';
 export const Header: React.FC = () => {
 	// eslint-disable-next-line id-length
 	const { t, i18n } = useTranslation();
+	const systemPrefersDark = useMediaQuery(
+		{
+			query: '(prefers-color-scheme: dark)',
+		},
+		undefined,
+	);
 
 	const handleChangeLang = () => {
 		const lang = i18n.language === 'en' ? 'ru' : 'en';
@@ -24,7 +32,7 @@ export const Header: React.FC = () => {
 
 	return (
 		<div className="header">
-			<img className="header__logo" src={logo} alt="logo" />
+			<img className="header__logo" src={systemPrefersDark ? logo_white : logo} alt="logo" />
 			<ul className="header__nav">
 				<li>
 					<NavLink to="/" className={({ isActive }) => `header__nav--link ${isActive ? 'active' : ''}`}>

@@ -12,6 +12,12 @@ export enum WsCmd {
 	online = 'online',
 }
 
+// eslint-disable-next-line no-shadow
+export enum WsSignType {
+	google = 'google',
+	yandex = 'yandex',
+}
+
 export class WsData {}
 
 export class WsDataMessage extends WsData {
@@ -29,10 +35,12 @@ export class WsDataMessage extends WsData {
 
 export class WsDataSignIn extends WsData {
 	access_token: string;
+	type: WsSignType;
 
-	constructor(access_token: string) {
+	constructor(access_token: string, type?: WsSignType) {
 		super();
 		this.access_token = access_token;
+		this.type = type ?? WsSignType.google;
 	}
 }
 

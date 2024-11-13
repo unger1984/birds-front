@@ -132,18 +132,24 @@
 	}
 
 	&__sign{
+		display: flex;
+		flex-direction: row;
 		margin: 0 10px;
-		color: #4B5876;
 
-		@media only screen and (min-width:944px) and (max-width: 1280px) {
-			padding: 6px 8px;
-			gap: 6px;
-			box-shadow: 1px 1px 6px #C9D9E8, -6px -6px 14px #fff;
-			border-radius: 6px;
-			font-weight: 400;
-			font-size: 16px;
-			line-height: 14px;
-			height: 30px;
+		&--title{
+			display: flex;
+			flex: 1;
+		}
+
+		.btn{
+			padding: 1px;
+			margin-right: 5px;
+			&:hover{background-color: #888FA7}
+		}
+
+		img{
+			width: 32px;
+			height: 32px;
 		}
 	}
 

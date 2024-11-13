@@ -48,6 +48,7 @@ module.exports = {
 			__URL_HLS_480P__: JSON.stringify(process.env.URL_HLS_480P || ''),
 			__URL_HLS_720P__: JSON.stringify(process.env.URL_HLS_720P || ''),
 			__GOOGLE_AUTH_CLIENT_ID__: JSON.stringify(process.env.GOOGLE_AUTH_CLIENT_ID || ''),
+			__YANDEX_AUTH_CLIENT_ID__: JSON.stringify(process.env.YANDEX_AUTH_CLIENT_ID || ''),
 		}),
 		new CopyPlugin({
 			patterns: [

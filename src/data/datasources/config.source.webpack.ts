@@ -7,6 +7,7 @@ declare const __URL_HLS_360P__: string;
 declare const __URL_HLS_480P__: string;
 declare const __URL_HLS_720P__: string;
 declare const __GOOGLE_AUTH_CLIENT_ID__: string;
+declare const __YANDEX_AUTH_CLIENT_ID__: string;
 
 export class ConfigSourceWebpack extends ConfigSource {
 	private readonly _hlsUrl: string;
@@ -15,6 +16,7 @@ export class ConfigSourceWebpack extends ConfigSource {
 	private readonly _hlsUrl720p: string;
 	private readonly _wsUrl: string;
 	private readonly _googleAuthClientId: string;
+	private readonly _yandexAuthClientId: string;
 	private readonly _version: string;
 
 	constructor() {
@@ -25,6 +27,7 @@ export class ConfigSourceWebpack extends ConfigSource {
 		this._hlsUrl720p = __URL_HLS_720P__;
 		this._wsUrl = __URL_WS__;
 		this._googleAuthClientId = __GOOGLE_AUTH_CLIENT_ID__;
+		this._yandexAuthClientId = __YANDEX_AUTH_CLIENT_ID__;
 		this._version = __VERSION__;
 	}
 
@@ -38,6 +41,10 @@ export class ConfigSourceWebpack extends ConfigSource {
 
 	public override get googleAuthClientId(): string {
 		return this._googleAuthClientId;
+	}
+
+	public override get yandexAuthClientId(): string {
+		return this._yandexAuthClientId;
 	}
 
 	public override get version(): string {

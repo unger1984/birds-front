@@ -32,7 +32,7 @@ export const ChatOnline: React.FC = () => {
 				<Preloader />
 			) : (
 				<>
-					{list.map(item => (
+					{list.reverse().map(item => (
 						<ChatOnlineItem key={item.uuid} online={item} />
 					))}
 				</>

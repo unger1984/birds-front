@@ -54,7 +54,7 @@ export const ChatVew: React.FC<ChatVewProps> = ({ onScreenshot }) => {
 				WsEffector.getInstance().send(
 					new WsDto(WsCmd.sign_in, new WsDataSignIn(access_token, WsSignType.yandex)),
 				);
-				self.location.assign('/');
+				// self.location.assign('/');
 			}
 		}
 	}, [hash, loadingWs]);

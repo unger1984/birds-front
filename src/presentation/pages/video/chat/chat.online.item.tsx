@@ -12,7 +12,7 @@ export const ChatOnlineItem: React.FC<ChatOnlineItemProps> = ({ online }) => {
 	const minutes = Math.floor(duration.asMinutes() % 60);
 	const seconds = Math.floor(duration.asSeconds() % 60);
 
-	const time = `${hours > 0 ? String(hours).padStart(2, '0') + ':' : ''}${minutes > 0 && hours > 0 ? String(minutes).padStart(2, '0') + ':' : ''}${String(seconds).padStart(2, '0')}`;
+	const time = `${hours > 0 ? String(hours).padStart(2, '0') + ':' : ''}${minutes > 0 || hours > 0 ? String(minutes).padStart(2, '0') + ':' : ''}${String(seconds).padStart(2, '0')}`;
 
 	return (
 		<div className="chat__online-item">
